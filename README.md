@@ -2,7 +2,9 @@
 
 [NaCl-Ltd の GitHub container registry](https://github.com/orgs/NaCl-Ltd/packages) のDockerイメージ生成に使用したDockerfileを管理するためのリポジトリ
 
-## 前提
+## How To
+
+### 準備
 
 ```
 docker login ghcr.io -u ${Githubアカウント名}
@@ -10,7 +12,7 @@ docker login ghcr.io -u ${Githubアカウント名}
 
 でログインできるようにしておいてください。また認証トークンには然るべきパーミッションが必要です。
 
-## 新規イメージの作成
+### 新規イメージの作成
 
 イメージ名ディレクトリ、Dockerfile を作成します。
 
@@ -30,7 +32,7 @@ docker tag ${イメージ名}:latest ghcr.io/nacl-ltd/${イメージ名}:latest
 docker push ghcr.io/nacl-ltd/${イメージ名}:latest
 ```
 
-## 別バージョンの作成
+### 別バージョンの作成
 
 別バージョン(例:ruby2.7)用の Dockerfile を作成
 
