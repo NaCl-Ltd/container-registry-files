@@ -101,8 +101,8 @@ RUN yum groupinstall -y 'Development Tools'
 # mysql、mysqldump コマンドを使用するため、mariadb-server パッケージをインストール
 RUN yum install -y mariadb-devel mariadb-server sudo
 # browser-test 実行に必要なパッケージ
-RUN curl -fsSL https://rpm.nodesource.com/setup_18.x | bash -
-RUN yum install -y alsa-lib gtk3 nss libXScrnSaver at-spi2-atk liberation-mono-fonts liberation-narrow-fonts liberation-sans-fonts  liberation-serif-font poppler-utils
+RUN curl -fsSL https://rpm.nodesource.com/setup_16.x | bash -
+RUN yum install -y nodejs alsa-lib gtk3 nss libXScrnSaver at-spi2-atk liberation-mono-fonts liberation-narrow-fonts liberation-sans-fonts  liberation-serif-font poppler-utils
 # xmlsectool 実行に必要なパッケージ
 RUN yum install -y  java-1.8.0-openjdk
 RUN echo "export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which java)))))" > /etc/profile.d/java.sh
