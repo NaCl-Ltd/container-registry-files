@@ -2,6 +2,10 @@
 
 [NaCl-Ltd の GitHub container registry](https://github.com/orgs/NaCl-Ltd/packages) のDockerイメージ生成に使用したDockerfileを管理するためのリポジトリ
 
+## 重要
+
+[NaCl-Ltd の GitHub container registry](https://github.com/orgs/NaCl-Ltd/packages) はPublicアクセスとなっています。プロジェクト固有のソースなどは含めいないよう注意!!
+
 ## How To
 
 ### 準備
@@ -25,7 +29,9 @@ vi ${イメージ名}/Dockerfile
 build して push します
 
 ```
-docker image build -t ${イメージ名}:latest ${イメージ名}
+cd ${イメージ名}
+
+docker image build -t ${イメージ名}:latest .
 
 docker tag ${イメージ名}:latest ghcr.io/nacl-ltd/${イメージ名}:latest
 
@@ -43,7 +49,9 @@ vi ${イメージ名}/Dockerfile-ruby2.7
 build して push します
 
 ```
-docker image build -t ${イメージ名}:ruby2.7 -f Dockerfile-ruby2.7 ${イメージ名}
+cd ${イメージ名}
+
+cat Dockerfile-ruby2.7 | docker image build -t ${イメージ名}:ruby2.7 -
 
 docker tag ${イメージ名}:ruby2.7 ghcr.io/nacl-ltd/${イメージ名}:ruby2.7
 
