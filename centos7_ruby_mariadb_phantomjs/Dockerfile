@@ -18,13 +18,12 @@ RUN apt-get update && apt-get install -y \
 		zlib1g-dev
 
 ## デフォルトで入っていないパッケージ
-RUN apt-get update && apt-get install -y sudo software-properties-common
-RUN apt-get install -y build-essential
+RUN apt-get update && apt-get install -y sudo software-properties-common build-essential
 ## mysql、mysqldump コマンドを使用するため、mariadb-server パッケージをインストール
-RUN apt-get install -y libmariadb-dev mariadb-server sudo
+RUN apt-get install -y libmariadb-dev mariadb-server
 ## browser-test 実行に必要なパッケージ
 RUN curl -SL https://deb.nodesource.com/setup_11.x | bash -
-RUN apt-get install -y nodejs libasound2 libgtk-3-0 libnss3 libxss1 libatk-bridge2.0-0 fonts-liberation libpoppler-glib8
+RUN apt-get install -y nodejs libasound2 libgtk-3-0 libnss3 libxss1 libatk-bridge2.0-0 fonts-liberation poppler-utils
 ## xmlsectool 実行に必要なパッケージ
 RUN echo "path-exclude /usr/lib/jvm/java-11-openjdk-amd64/man/*" > /etc/dpkg/dpkg.cfg.d/openjdk-11 && \
     apt update && \
