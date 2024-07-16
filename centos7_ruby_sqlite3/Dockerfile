@@ -18,7 +18,8 @@ RUN apt-get update && apt-get install -y \
 		zlib1g-dev
 
 ## デフォルトで入っていないパッケージ
-RUN apt-get update && apt-get install -y sudo software-properties-common build-essential
+RUN apt-get update && apt-get install -y sudo software-properties-common
+RUN apt-get install -y build-essential
 ## sqlite3.gem のビルド時に必要なパッケージ
 RUN apt-get install -y libsqlite3-dev
 # JavaScriptの実行用のパッケージをインストール

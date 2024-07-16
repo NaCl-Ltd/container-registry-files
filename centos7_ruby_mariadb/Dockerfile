@@ -18,9 +18,10 @@ RUN apt-get update && apt-get install -y \
 		zlib1g-dev
 
 ## デフォルトで入っていないパッケージ
-RUN apt-get update && apt-get install -y sudo software-properties-common poppler-utils build-essential
+RUN apt-get update && apt-get install -y sudo software-properties-common
+RUN apt-get install -y build-essential
 ## mysql、mysqldump コマンドを使用するため、mariadb-server パッケージをインストール
-RUN apt-get install -y libmariadb-dev mariadb-server
+RUN apt-get install -y libmariadb-dev mariadb-server sudo 
 # JavaScriptの実行用のパッケージをインストール
 RUN apt-get install -y libv8-dev nodejs
 
