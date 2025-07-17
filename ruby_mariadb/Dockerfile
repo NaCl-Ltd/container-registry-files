@@ -1,4 +1,4 @@
-FROM ruby:3.0.7
+FROM ruby:3.4.5
 
 RUN apt-get update
 RUN apt-get install -y locales
