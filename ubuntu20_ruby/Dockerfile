@@ -13,7 +13,7 @@ RUN apt update && apt install -y \
   nodejs \
   libffi-dev \
   libpq-dev \
-  libreadline-dev \
+  libyaml-dev \
   libssl-dev \
   systemd \
   sudo \
@@ -34,6 +34,5 @@ RUN echo "export RBENV_ROOT=\"/usr/local/rbenv\"\n\
 export PATH=\"${RBENV_ROOT}/bin:${PATH}\"\n\
 export CONFIGURE_OPTS=--disable-install-doc\n\
 eval \"\$(/usr/local/rbenv/bin/rbenv init --no-rehash -)\"" >> /usr/local/.bash_profile
-RUN . /usr/local/.bash_profile; rbenv install 3.1.5
-RUN . /usr/local/.bash_profile; rbenv global 3.1.5
-RUN . /usr/local/.bash_profile; gem i bundler --no-document -v 2.3.18
+RUN . /usr/local/.bash_profile; rbenv install 3.4.5
+RUN . /usr/local/.bash_profile; rbenv global 3.4.5
