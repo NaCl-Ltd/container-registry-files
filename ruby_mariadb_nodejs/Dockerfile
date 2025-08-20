@@ -1,4 +1,4 @@
-FROM ruby:3.0.7-buster
+FROM ruby:3.4.5-bullseye
 
 RUN apt-get update
 RUN apt-get install -y locales
@@ -18,16 +18,15 @@ RUN apt-get update && apt-get install -y \
 		zlib1g-dev
 
 ## デフォルトで入っていないパッケージ
-RUN apt-get update && apt-get install -y sudo software-properties-common build-essential
+RUN apt-get update && apt-get install -y software-properties-common build-essential
 ## mysql、mysqldump コマンドを使用するため、mariadb-server パッケージをインストール
 RUN apt-get install -y libmariadb-dev mariadb-server
 ## browser-test 実行に必要なパッケージ
-RUN curl -SL https://deb.nodesource.com/setup_11.x | bash -
+RUN curl -SL https://deb.nodesource.com/setup_22.x | bash -
 RUN apt-get install -y nodejs libasound2 libgtk-3-0 libnss3 libxss1 libatk-bridge2.0-0 fonts-liberation poppler-utils
 ## xmlsectool 実行に必要なパッケージ
-RUN echo "path-exclude /usr/lib/jvm/java-11-openjdk-amd64/man/*" > /etc/dpkg/dpkg.cfg.d/openjdk-11 && \
-    apt update && \
-    apt -y install --no-install-recommends openjdk-11-jre-headless
+RUN apt update && \
+    apt -y install --no-install-recommends openjdk-17-jre-headless
 RUN echo "export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which java)))))" >> ~/.bashrc
 RUN echo 'export PATH=$PATH:$JAVA_HOME/bin' >> ~/.bashrc
 # 証明書が参照できずエラーとなる場合があるためシンボリックリンクを追加
