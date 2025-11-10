@@ -18,42 +18,39 @@ docker login ghcr.io -u ${Githubアカウント名}
 
 ### 新規イメージの作成
 
+イメージ名を変数として定義
+```
+IMAGE_NAME=イメージ名
+```
+
 イメージ名ディレクトリ、Dockerfile を作成します。
 
 ```
-mkdir ${イメージ名}
+mkdir ${IMAGE_NAME}
 
-vi ${イメージ名}/Dockerfile
+vi ${IMAGE_NAME}/Dockerfile
 ```
 
 build して push します
 
 ```
-cd ${イメージ名}
+cd ${IMAGE_NAME}
 
-docker image build -t ${イメージ名}:latest .
+docker image build -t ${IMAGE_NAME}:latest .
 
-docker tag ${イメージ名}:latest ghcr.io/nacl-ltd/${イメージ名}:latest
+docker tag ${IMAGE_NAME}:latest ghcr.io/nacl-ltd/${IMAGE_NAME}:latest
 
-docker push ghcr.io/nacl-ltd/${イメージ名}:latest
+docker push ghcr.io/nacl-ltd/${IMAGE_NAME}:latest
 ```
 
-### 別バージョンの作成
+### 別タグの付与
 
-別バージョン(例:ruby2.7)用の Dockerfile を作成
-
-```
-vi ${イメージ名}/Dockerfile-ruby2.7
-```
-
-build して push します
+ここでは例として latest に別タグ ruby2.7 を付与する前提とする
 
 ```
-cd ${イメージ名}
+IMAGE_NEW_TAG=ruby2.7
 
-cat Dockerfile-ruby2.7 | docker image build -t ${イメージ名}:ruby2.7 -
+docker tag ${IMAGE_NAME}:latest ghcr.io/nacl-ltd/${IMAGE_NAME}:${IMAGE_NEW_TAG}
 
-docker tag ${イメージ名}:ruby2.7 ghcr.io/nacl-ltd/${イメージ名}:ruby2.7
-
-docker push ghcr.io/nacl-ltd/${イメージ名}:ruby2.7
+docker push ghcr.io/nacl-ltd/${IMAGE_NAME}:${IMAGE_NEW_TAG}
 ```
