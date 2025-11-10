@@ -1,4 +1,4 @@
-FROM ruby:3.4.5-bullseye
+FROM ruby:3.4.7-bookworm
 
 RUN apt-get update
 RUN apt-get install -y locales
@@ -29,8 +29,8 @@ RUN apt update && \
     apt -y install --no-install-recommends openjdk-17-jre-headless
 RUN echo "export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which java)))))" >> ~/.bashrc
 RUN echo 'export PATH=$PATH:$JAVA_HOME/bin' >> ~/.bashrc
-# 証明書が参照できずエラーとなる場合があるためシンボリックリンクを追加
-RUN ln -s /etc/ssl/certs/ca-certificates.crt /usr/lib/ssl/cert.pem
+# 証明書が参照できずエラーとなる場合があるためシンボリックリンクを追加(bookwormでコメントアウト)
+# RUN ln -s /etc/ssl/certs/ca-certificates.crt /usr/lib/ssl/cert.pem
 ## browser-testが文字化けしないようにするために必要なパッケージ
 ## 参考: https://www.yurikago-blog.com/posts/2
 RUN apt-get install -y libpango1.0-0 \
@@ -51,7 +51,7 @@ RUN apt-get install -y libpango1.0-0 \
     xfonts-100dpi \
     xfonts-75dpi \
     x11-utils \
-    xfonts-cyrillic \
+    t1-cyrillic \
     xfonts-base \
     libgbm1
 CMD [ "irb" ]
