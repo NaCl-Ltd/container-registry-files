@@ -1,4 +1,4 @@
-FROM ruby:3.4.5
+FROM ruby:3.4.7
 
 RUN apt-get update
 RUN apt-get install -y locales
@@ -18,19 +18,11 @@ RUN apt-get update && apt-get install -y \
 		zlib1g-dev
 
 ## デフォルトで入っていないパッケージ
-RUN apt-get update && apt-get install -y sudo software-properties-common poppler-utils build-essential
+RUN apt-get update && apt-get install -y sudo poppler-utils build-essential
 ## mysql、mysqldump コマンドを使用するため、mariadb-server パッケージをインストール
 RUN apt-get install -y libmariadb-dev mariadb-server
 # JavaScriptの実行用のパッケージをインストール
 RUN apt-get install -y libv8-dev nodejs
 
 # Git
-RUN apt-get update && apt-get install -y libcurl4-gnutls-dev libexpat1-dev wget gettext
-RUN wget https://github.com/git/git/archive/refs/tags/v2.28.1.tar.gz \
-  && tar xvzf v2.28.1.tar.gz \
-  && cd git-2.28.1 \
-  && make prefix=/usr/local all \
-  && make prefix=/usr/local install \
-  && cd / \
-  && rm v2.28.1.tar.gz \
-  && rm -r git-2.28.1
+RUN apt-get update && apt-get install -y git
